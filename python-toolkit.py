@@ -261,6 +261,12 @@ if fil=='4':
         print("Enter 5 for adding PREROUTING rules of IPTABLES")
         print("Enter 6 for adding POSTROUTING rules of IPTABLES")
         print("Enter 7 to adding rules for specifies a protocol, such as TCP, UDP, ICMP, or ALL")
+        print("Enter 8 to delete all rules")
+        print("Enter 9 to set default INPUT rules")
+        print("Enter 10 to set default OUTUT rules")
+        print("Enter 11 to set default FORWARD rules")
+        print("Enter 12 to set default PREROUTING rules")
+        print("Enter 13 to set default POSTROUTING rules")
         fil3=raw_input('Enter the number :')
         if fil3=='1':
             subprocess.call(["sudo","iptables","-L","-n"])
@@ -491,6 +497,99 @@ if fil=='4':
                 if ff=='5':
                     IP=raw_input("Enter the source address :")
                     subprocess.call(["sudo","iptables","-p",pro,"-A","POSTROUTING","-j","RETERN","-s",IP])
+        if fil3=='8':
+            subprocess.call(["sudo","iptables","-F"])
+            
+        if fil3=='9':
+            print("Enter 1 to change ACCEPT rules")
+            print("Enter 2 to change DROP rules")
+            print("Enter 3 to change REJECT rules")
+            print("Enter 4 to change QUEUE rules")
+            print("Enter 5 to change RETURN rules")
+            ff=raw_input("Enter the number :")
+            if ff=='2':
+                subprocess.call(["sudo","iptables","--policy","INPUT","ACCEPT"])
+            if ff=='3':
+                subprocess.call(["sudo","iptables","--policy","INPUT","DROP"])
+            if ff=='4':
+                subprocess.call(["sudo","iptables","--policy","INPUT","REJECT"])
+            if ff=='5':
+                subprocess.call(["sudo","iptables","--policy","INPUT","QUEUE"])
+            if ff=='6':
+                subprocess.call(["sudo","iptables","--policy","INPUT","RETURN"])
+                
+        if fil3=='10':
+            print("Enter 1 to change ACCEPT rules")
+            print("Enter 2 to change DROP rules")
+            print("Enter 3 to change REJECT rules")
+            print("Enter 4 to change QUEUE rules")
+            print("Enter 5 to change RETURN rules")
+            ff=raw_input("Enter the number :")
+            if ff=='2':
+                subprocess.call(["sudo","iptables","--policy","OUTPUT","ACCEPT"])
+            if ff=='3':
+                subprocess.call(["sudo","iptables","--policy","OUTPUT","DROP"])
+            if ff=='4':
+                subprocess.call(["sudo","iptables","--policy","OUTPUT","REJECT"])
+            if ff=='5':
+                subprocess.call(["sudo","iptables","--policy","OUTPUT","QUEUE"])
+            if ff=='6':
+                subprocess.call(["sudo","iptables","--policy","OUTPUT","RETURN"])
+                
+        if fil3=='11':
+            print("Enter 1 to change ACCEPT rules")
+            print("Enter 2 to change DROP rules")
+            print("Enter 3 to change REJECT rules")
+            print("Enter 4 to change QUEUE rules")
+            print("Enter 5 to change RETURN rules")
+            ff=raw_input("Enter the number :")
+            if ff=='2':
+                subprocess.call(["sudo","iptables","--policy","FORWARD","ACCEPT"])
+            if ff=='3':
+                subprocess.call(["sudo","iptables","--policy","FORWARD","DROP"])
+            if ff=='4':
+                subprocess.call(["sudo","iptables","--policy","FORWARD","REJECT"])
+            if ff=='5':
+                subprocess.call(["sudo","iptables","--policy","FORWARD","QUEUE"])
+            if ff=='6':
+                subprocess.call(["sudo","iptables","--policy","FORWARD","RETURN"])
+                
+        if fil3=='12':
+            print("Enter 1 to change ACCEPT rules")
+            print("Enter 2 to change DROP rules")
+            print("Enter 3 to change REJECT rules")
+            print("Enter 4 to change QUEUE rules")
+            print("Enter 5 to change RETURN rules")
+            ff=raw_input("Enter the number :")
+            if ff=='2':
+                subprocess.call(["sudo","iptables","--policy","PREROUTING","ACCEPT"])
+            if ff=='3':
+                subprocess.call(["sudo","iptables","--policy","PREROUTING","DROP"])
+            if ff=='4':
+                subprocess.call(["sudo","iptables","--policy","PREROUTING","REJECT"])
+            if ff=='5':
+                subprocess.call(["sudo","iptables","--policy","PREROUTING","QUEUE"])
+            if ff=='6':
+                subprocess.call(["sudo","iptables","--policy","PREROUTING","RETURN"])
+                
+        if fil3=='13':
+            print("Enter 1 to change ACCEPT rules")
+            print("Enter 2 to change DROP rules")
+            print("Enter 3 to change REJECT rules")
+            print("Enter 4 to change QUEUE rules")
+            print("Enter 5 to change RETURN rules")
+            ff=raw_input("Enter the number :")
+            if ff=='2':
+                subprocess.call(["sudo","iptables","--policy","POSTROUTING","ACCEPT"])
+            if ff=='3':
+                subprocess.call(["sudo","iptables","--policy","POSTROUTING","DROP"])
+            if ff=='4':
+                subprocess.call(["sudo","iptables","--policy","POSTROUTING","REJECT"])
+            if ff=='5':
+                subprocess.call(["sudo","iptables","--policy","POSTROUTING","QUEUE"])
+            if ff=='6':
+                subprocess.call(["sudo","iptables","--policy","POSTROUTING","RETURN"])
+           
     if fil2=='3':
         print("Enter 1 to check status of firewall")
         print("Enter 2 for turn on or turn off the firewall ")
