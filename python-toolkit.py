@@ -793,4 +793,3 @@ if fil=='4':
                 subprocess.call(["sudo","ufw","logging","on"])
             if fil4=='2':
                 subprocess.call(["sudo","ufw","logging","off"])
-        
