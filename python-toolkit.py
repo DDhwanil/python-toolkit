@@ -27,15 +27,14 @@ if fil=='1':
         print("Enter 6 to find when user logged in")
         print("Enter 7 to list the process in current shell")
         print("Enter 8 to list all the processes of user")
-        print("Enter 9 to list processes of PID")
-        print("Enter 10 to know command history")
-        print("Enter 11 to kill any process")
-        print("Enter 12 to Identifies group names and group IDs")
-        print("Enter 13 to list shadow passwords for groups")
-        print("Enter 14 to list TCP/IP and UDP services and their port assignments")
-        print("Enter 15 to list the partitions")
-        print("Enter 16 to list the mounted flie system and available space")
-        print("Enter 17 to display access log of Apache2")
+        print("Enter 9 to list processes of PID")        
+        print("Enter 10 to kill any process")
+        print("Enter 11 to Identifies group names and group IDs")
+        print("Enter 12 to list shadow passwords for groups")
+        print("Enter 13 to list TCP/IP and UDP services and their port assignments")
+        print("Enter 14 to list the partitions")
+        print("Enter 15 to list the mounted flie system and available space")
+        print("Enter 16 to display access log of Apache2")
                 
         fil2=raw_input('Enter the number :') 
         if fil2=='1':
@@ -58,25 +57,23 @@ if fil=='1':
             subprocess.call(["ps","-u",u])
         if fil2=='9':
             u=raw_input("Enter the PID :")
-            subprocess.call(["ps","-p",u])
+            subprocess.call(["ps","-p",u])                 
         if fil2=='10':
-            subprocess.call(["history"])          
-        if fil2=='11':
             f=raw_input("Enter the username :")
             subprocess.call(["ps","-u",f])
             k=raw_input("Enter the PID to kill ")
             subprocess.call(["kill",k])
-        if fil2=='12':
+        if fil2=='11':
             subprocess.call(["sudo","cat","/etc/group"])
-        if fil2=='13':
+        if fil2=='12':
             subprocess.call(["sudo","cat","/etc/gshadow"])
-        if fil2=='14':
+        if fil2=='13':
             subprocess.call(["sudo","cat","/etc/services"])
-        if fil2=='15':
+        if fil2=='14':
             subprocess.call(["sudo","/sbin/fdisk","-l"])
-        if fil2=='16':
+        if fil2=='15':
             subprocess.call(["sudo","df","-h"])
-        if fil2=='17':
+        if fil2=='16':
             subprocess.call(["cat","/var/log/apache2/access.log"])    
            
 
