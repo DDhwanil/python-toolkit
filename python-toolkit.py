@@ -136,9 +136,7 @@ if fil=='2':
         inpu=raw_input('Enter the Mac address :')
         li=list() 
         f=open('mac.txt')
-        for line in f:
-            li.append(line)
-            check()                
+        check()                
     if fil2=='14':
         t=raw_input('Enter the PCAP file name :')
         o=subprocess.check_output(["tcpdump","-XX","-r",t])
@@ -228,7 +226,7 @@ if fil=='3':
         subprocess.call(["nmap","-sO",IP])                             
     if fil2=='17':
         IP=raw_input('\nEnter the IP :')
-        subprocess.call(["sudo","nmap","--allports",IP])
+        subprocess.call(["nmap","--allports",IP])
     if fil2=='18':
         ran=raw_input('\n Enter the range in x-y form or Port :')
         IP=raw_input('\nEnter the IP :')
@@ -627,12 +625,12 @@ if fil=='4':
             print("\n")
             fil4=raw_input("Enter the number :")
             if fil4=='1':
-                print("Enter 1 to set firewall default to allow all incomming connections")
-                print("Enter 2 to set firewall default to deny all incomming connections")
+                print("Enter 1 to set firewall default to allow all incoming connections")
+                print("Enter 2 to set firewall default to deny all incoming connections")
                 print("Enter 3 to set firewall default to allow all outgoing connections")
                 print("Enter 4 to set firewall default to deny all outgoing connections")
-                print("Enter 5 to create rule for allow incomming connection for port")
-                print("Enter 6 to allow or deny incomming connection for port with protocol")
+                print("Enter 5 to create rule for allow incoming connection for port")
+                print("Enter 6 to allow or deny incoming connection for port with protocol")
                 print("Enter 7 to allow or deny connection for port")
                 print("Enter 8 to allow or deny connection for port with protocol")
                 print("Enter 9 for allow or deny IP")
@@ -641,16 +639,16 @@ if fil=='4':
                 print("\n")
                 fil5=raw_input("Enter the number :")
                 if fil5=='1':
-                    subprocess.call(["sudo","ufw","default","allow","incomming"])
+                    subprocess.call(["sudo","ufw","default","allow","incoming"])
                 if fil5=='2':
-                    subprocess.call(["sudo","ufw","default","deny","incomming"])
+                    subprocess.call(["sudo","ufw","default","deny","incoming"])
                 if fil5=='3':
                     subprocess.call(["sudo","ufw","default","allow","outgoing"])
                 if fil5=='4':
                     subprocess.call(["sudo","ufw","default","deny","outgoing"])
                 if fil5=='5':
                     por=raw_input("Enter the port number :")
-                    subprocess.call(["sudo","ufw","allow"])        
+                    subprocess.call(["sudo","ufw","allow",por])        
                 if fil5=='6':
                     print("Enter 1 for allow")
                     print("Enter 2 for deny")
@@ -658,10 +656,10 @@ if fil=='4':
                     ff=raw_input("Ente the number :")                    
                     if ff=='1':
                         por=raw_input("Enter port with protocol in form of port/protocol:")
-                        subprocess.call(["sudo","ufw","allow","incomming",por])
+                        subprocess.call(["sudo","ufw","allow","incoming",por])
                     if ff=='2':
                         por=raw_input("Enter port with protocol in form of port/protocol:")
-                        subprocess.call(["sudo","ufw","deny","incomming",por])
+                        subprocess.call(["sudo","ufw","deny","incoming",por])
                 if fil5=='7': 
                     print("Enter 1 for allow")
                     print("Enter 2 for deny")
@@ -731,44 +729,44 @@ if fil=='4':
                         te='deny'
                         subprocess.call(["sudo","ufw","deny","from",f,"to any port",ff,"proto",fff])
             if fil4=='2':
-                print("Enter 3 to delete firewall default to allow all incomming connections")
-                print("Enter 4 to delete firewall default to deny all incomming connections")
-                print("Enter 5 to delete firewall default to allow all outgoing connections")
-                print("Enter 6 to delete firewall default to deny all outgoing connections")
-                print("Enter 7 to delete rule for allow incomming connection for port")
-                print("Enter 8 to delete rule for allow incomming connection for port with protocol")
-                print("Enter 9 to delete rule for allow deny connection for port")
-                print("Enter 10 to delete rule to allow deny connection for port with protocol")
-                print("Enter 11 for delete rule to allow or deny IP")
-                print("Enter 12 for delete rule to allow or deny  IP with port number")
-                print("Enter 13 to allow or deny  IP with port number using specific protocol")
+                print("Enter 1 to delete firewall default to allow all incoming connections")
+                print("Enter 2 to delete firewall default to deny all incoming connections")
+                print("Enter 3 to delete firewall default to allow all outgoing connections")
+                print("Enter 4 to delete firewall default to deny all outgoing connections")
+                print("Enter 5 to delete rule for allow incoming connection for port")
+                print("Enter 6 to delete rule for allow incoming connection for port with protocol")
+                print("Enter 7 to delete rule for allow deny connection for port")
+                print("Enter 8 to delete rule to allow deny connection for port with protocol")
+                print("Enter 9 for delete rule to allow or deny IP")
+                print("Enter 10 for delete rule to allow or deny  IP with port number")
+                print("Enter 11 to allow or deny  IP with port number using specific protocol")
                 print("\n")
                 fil5=raw_input("Enter the number :")
                 de="delete"
                 
                 if fil5=='1':
-                    subprocess.call(["sudo",de,"ufw","default","allow","incomming"])
+                    subprocess.call(["sudo","ufw",de,"default","allow","incoming"])
+                if fil5=='2':
+                    subprocess.call(["sudo","ufw",de,"default","deny","incoming"])
+                if fil5=='3':
+                    subprocess.call(["sudo","ufw",de,"default","allow","incoming"])
                 if fil5=='4':
-                    subprocess.call(["sudo",de,"ufw","default","deny","incomming"])
+                    subprocess.call(["sudo","ufw",de,"default","deny","incoming"])
                 if fil5=='5':
-                    subprocess.call(["sudo",de,"ufw","default","allow","incomming"])
+                    por=raw_input("Enter the port number :")
+                    subprocess.call(["sudo","ufw",de,"allow",por])        
                 if fil5=='6':
-                    subprocess.call(["sudo",de,"ufw","default","deny","incomming"])
+                    print("Define port with protocol in form of port/protocol")
+                    por=raw_input("Enter :")            
+                    subprocess.call(["sudo","ufw",de,"allow",por])
                 if fil5=='7':
                     por=raw_input("Enter the port number :")
-                    subprocess.call(["sudo",de,"ufw","allow"])        
+                    subprocess.call(["sudo","ufw",de,"deny"])        
                 if fil5=='8':
                     print("Define port with protocol in form of port/protocol")
                     por=raw_input("Enter :")            
-                    subprocess.call(["sudo",de,"ufw","allow",por])
+                    subprocess.call(["sudo","ufw",de,"deny",por])
                 if fil5=='9':
-                    por=raw_input("Enter the port number :")
-                    subprocess.call(["sudo",de,"ufw","deny"])        
-                if fil5=='10':
-                    print("Define port with protocol in form of port/protocol")
-                    por=raw_input("Enter :")            
-                    subprocess.call(["sudo",de,"ufw","deny",por])
-                if fil5=='11':
                     print("Enter 1 for allow IP :")
                     print("Enter 2 for deny IP :")
                     fil6=raw_input("Enter the Number :")
@@ -776,13 +774,13 @@ if fil=='4':
                     if fil6=='1':
                        f=raw_input("Enter the IP address :")
                        te='allow'
-                       subprocess.call(["sudo",de,"ufw","allow","from",f])
+                       subprocess.call(["sudo","ufw",de,"allow","from",f])
                     if fil6=='2':
                         f=raw_input("Enter the IP address :")
                         print("Enter the IP address :")
                         te='deny'
-                        subprocess.call(["sudo",de,"ufw","deny","from",f])
-                if fil5=='12':
+                        subprocess.call(["sudo","ufw",de,"deny","from",f])
+                if fil5=='10':
                     print("Enter 1 for allow IP :")
                     print("Enter 2 for deny IP :")
                     fil6=raw_input("Enter the Number :")
@@ -791,14 +789,14 @@ if fil=='4':
                        f=raw_input("Enter the IP address :")
                        ff=raw_input("Enter the IP address :")
                        te='allow'
-                       subprocess.call(["sudo",de,"ufw","allow","from",f,"to any port",ff])
+                       subprocess.call(["sudo","ufw",de,"allow","from",f,"to any port",ff])
                     if fil6=='2':
                         f=raw_input("Enter the IP address :")
                         f=raw_input("Enter the IP address :")
                         print("Enter the IP address :")
                         te='deny'
-                        subprocess.call(["sudo",de,"ufw","deny","from",f,ff])
-                if fil5=='13':
+                        subprocess.call(["sudo","ufw",de,"deny","from",f,ff])
+                if fil5=='11':
                     print("Enter 1 for allow IP :")
                     print("Enter 2 for deny IP :")
                     fil6=raw_input("Enter the Number :")
@@ -808,13 +806,13 @@ if fil=='4':
                        ff=raw_input("Enter the IP address :")
                        fff=raw_input("Enter the protocol :")
                        te='allow'
-                       subprocess.call(["sudo",de,"ufw","allow","from",f,"to any port",ff,"proto",fff])
+                       subprocess.call(["sudo","ufw",de,"allow","from",f,"to any port",ff,"proto",fff])
                     if fil6=='2':
                         f=raw_input("Enter the IP address :")
                         f=raw_input("Enter the IP address :")
                         print("Enter the IP address :")
                         te='deny'
-                        subprocess.call(["sudo",de,"ufw","deny","from",f,"to any port",ff,"proto",fff])
+                        subprocess.call(["sudo","ufw",de,"deny","from",f,"to any port",ff,"proto",fff])
         if fil3=='4':
             print("Enter 1 for turn on the turn on firewall logging ")
             print("Enter 2 for turn on the turn off firewall logging ")
