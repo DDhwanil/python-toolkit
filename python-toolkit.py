@@ -14,7 +14,7 @@ def check():
 
 
 print("Enter 1 for Linux Info")
-print("Enter 2 for Networking capturing")
+print("Enter 2 for Networking capturing and PCAP parsing")
 print("Enter 3 for Network scanning")
 print("Enter 4 for Linux Security\n")
 fil=raw_input('Enter the number :')
@@ -192,7 +192,7 @@ if fil=='3':
         IP=raw_input('\nEnter the IP :')
         subprocess.call(["sudo","nmap","-sN",IP])        
     if fil2=='6':
-        IP=raw_input('\nEnter the IP :')
+        IP=raw_input('\nEnter the IP range in 111.222.333.x-y :')
         subprocess.call(["sudo","nmap","-sP",IP])            
     if fil2=='7':
         IP=raw_input('\nEnter the IP :')
@@ -263,6 +263,7 @@ if fil=='4':
         print("Enter 11 to set default FORWARD rules")
         print("Enter 12 to set default PREROUTING rules")
         print("Enter 13 to set default POSTROUTING rules")
+        print("Enter 14 to limit the packet rate")
         print("\n")
         fil3=raw_input('Enter the number :')
         if fil3=='1':
@@ -600,6 +601,73 @@ if fil=='4':
                 subprocess.call(["sudo","iptables","--policy","POSTROUTING","QUEUE"])
             if ff=='5':
                 subprocess.call(["sudo","iptables","--policy","POSTROUTING","RETURN"])
+                
+        if fil3=='14':
+           print("Enter 1 for adding INPUT rules of IPTABLES")
+           print("Enter 2 for adding OUTPUT rules of IPTABLES")
+           print("Enter 3 for adding FORWARD rules of IPTABLES")
+           print("Enter 4 for adding PREROUTING rules of IPTABLES")
+           print("Enter 5 for adding POSTROUTING rules of IPTABLES")
+           print("\n")
+           ff=raw_input("Enter the number :")
+           if ff=='1':
+               print("Enter 1 to change ACCEPT rules")
+               print("Enter 2 to change DROP rules")
+               print("Enter 3 to change REJECT rules")
+               print("Enter 4 to change QUEUE rules")
+               print("Enter 5 to change RETURN rules")
+               print("\n")
+               ff=raw_input("Enter the number :")
+               pro=raw_input("Enter the protocol :")
+               li=raw_input("Enter the rate in x/sec or x/min or x/hour")
+               subprocess.call(["sudo","-A","INPUT","-p",pro,"--limit",li,"-j",ff])
+            if ff=='2':
+               print("Enter 1 to change ACCEPT rules")
+               print("Enter 2 to change DROP rules")
+               print("Enter 3 to change REJECT rules")
+               print("Enter 4 to change QUEUE rules")
+               print("Enter 5 to change RETURN rules")
+               print("\n")
+               ff=raw_input("Enter the number :")
+               pro=raw_input("Enter the protocol :")
+               li=raw_input("Enter the rate in x/sec or x/min or x/hour")
+               subprocess.call(["sudo","-A","OUTPUT","-p",pro,"--limit",li,"-j",ff])
+            
+            if ff=='3':
+               print("Enter 1 to change ACCEPT rules")
+               print("Enter 2 to change DROP rules")
+               print("Enter 3 to change REJECT rules")
+               print("Enter 4 to change QUEUE rules")
+               print("Enter 5 to change RETURN rules")
+               print("\n")
+               ff=raw_input("Enter the number :")
+               pro=raw_input("Enter the protocol :")
+               li=raw_input("Enter the rate in x/sec or x/min or x/hour")
+               subprocess.call(["sudo","-A","FORWARD","-p",pro,"--limit",li,"-j",ff])
+            if ff=='4':
+               print("Enter 1 to change ACCEPT rules")
+               print("Enter 2 to change DROP rules")
+               print("Enter 3 to change REJECT rules")
+               print("Enter 4 to change QUEUE rules")
+               print("Enter 5 to change RETURN rules")
+               print("\n")
+               ff=raw_input("Enter the number :")
+               pro=raw_input("Enter the protocol :")
+               li=raw_input("Enter the rate in x/sec or x/min or x/hour")
+               subprocess.call(["sudo","-A","PREROUTING","-p",pro,"--limit",li,"-j",ff])
+            if ff=='5':
+               print("Enter 1 to change ACCEPT rules")
+               print("Enter 2 to change DROP rules")
+               print("Enter 3 to change REJECT rules")
+               print("Enter 4 to change QUEUE rules")
+               print("Enter 5 to change RETURN rules")
+               print("\n")
+               ff=raw_input("Enter the number :")
+               pro=raw_input("Enter the protocol :")
+               li=raw_input("Enter the rate in x/sec or x/min or x/hour")
+               subprocess.call(["sudo","-A","POSTROUTING","-p",pro,"--limit",li,"-j",ff])
+               
+                 
            
     if fil2=='3':
         print("Enter 1 to check status of firewall")
@@ -634,8 +702,8 @@ if fil=='4':
                 print("Enter 7 to allow or deny connection for port")
                 print("Enter 8 to allow or deny connection for port with protocol")
                 print("Enter 9 for allow or deny IP")
-                print("Enter 10 to allow or deny  IP with port number")
-                print("Enter 11 to allow or deny  IP with port number using specific protocol")
+                print("Enter 10 to allow or deny IP with port number")
+                print("Enter 11 to allow or deny IP with port number using specific protocol")
                 print("\n")
                 fil5=raw_input("Enter the number :")
                 if fil5=='1':
